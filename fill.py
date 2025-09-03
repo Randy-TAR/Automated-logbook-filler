@@ -45,7 +45,7 @@ def run_daily_logbook(docs_id):
     today_str = datetime.now().strftime("%m/%d/%y")
 
     # Time to run the code
-    excecution_time = dt_time(hour=11, minute=0)  # 4:00 PM
+    excecution_time = dt_time(hour=10, minute=0)  # 4:00 PM
 
     # Shared flag to stop loop
     stop_flag = False
