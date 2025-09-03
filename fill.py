@@ -22,10 +22,17 @@ def run_daily_logbook(docs_id):
 
     SCOPES = ['https://www.googleapis.com/auth/documents'] # permission level to have access to read/write in the doc
 
-    # loads and authenticates using your Service Account JSON file
-    creds = service_account.Credentials.from_service_account_file(
-        os.getenv("SERVICE_ACCOUNT_FILE"), scopes=SCOPES
+    # Load the JSON from the environment variable
+    service_account_info = json.loads(os.environ["GOOGLE_CREDENTIALS_JSON"])
+    
+    # Authenticate using the service account info
+    creds = service_account.Credentials.from_service_account_info(
+    service_account_info, scopes=SCOPES
     )
+    # loads and authenticates using your Service Account JSON file
+    # creds = service_account.Credentials.from_service_account_file(
+    #     os.getenv("SERVICE_ACCOUNT_FILE"), scopes=SCOPES
+    # )
     # connect to the Google Docs API
     service = build('docs', 'v1', credentials=creds)
     # document_id = os.getenv("DOCUMENT_ID")
